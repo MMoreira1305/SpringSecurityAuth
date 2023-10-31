@@ -2,6 +2,7 @@ package com.example.testeSecurity1.controller;
 
 import com.example.testeSecurity1.model.Produto;
 import com.example.testeSecurity1.serv.ProductService;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +31,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/produtos/{id}")
+    @RolesAllowed("ADMIN")
     public ResponseEntity delete(@PathVariable Long id){
         productService.delete(id);
         return ResponseEntity.ok().build();
